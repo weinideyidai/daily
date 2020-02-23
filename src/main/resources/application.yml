@@ -1,0 +1,73 @@
+server:
+  port: 1234
+  address: localhost
+
+spring:
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+      force-request: true
+      force-response: true
+
+  #springboot 数据源配置
+  datasource:
+    name: TestHikariDataSourcePool
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/daily?rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8
+    username: root
+    password: root
+
+    hikari:
+      auto-commit: true
+      allow-pool-suspension: true
+      connection-timeout: 30000
+      connection-init-sql: select 1
+      connection-test-query: select now() from dual
+      idle-timeout: 600000
+      initialization-fail-timeout: 30000
+      maximum-pool-size: 200
+      max-lifetime: 60000
+      minimum-idle: 10
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        useLocalTransactionState: true
+        cacheResultSetMetadata: true
+  mvc:
+    #静态资源映射路径
+    static-path-pattern: /**/*
+
+  #静态资源加载的实际类路径
+  resources:
+    static-locations:
+      - classpath:/static
+
+
+    #配置mybatis配置
+mybatis:
+  executor-type: batch
+  configuration:
+    local-cache-scope: session
+    map-underscore-to-camel-case: true
+    aggressive-lazy-loading: false
+    cache-enabled: true
+    default-fetch-size: 2000
+    lazy-loading-enabled: true
+    default-result-set-type: forward-only
+    lazy-load-trigger-methods:
+      - toString
+      - hashCode
+  lazy-initialization: false
+  mapper-locations:
+
+
+logging:
+  path: D:/mylog
+  file.max-size: 100MB
+  level:
+    com: debug
