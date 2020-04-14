@@ -28,7 +28,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
+    private int count;
+   
+    
     @RequestMapping("/login")
     public ModelAndView login(UserVO userVO){
         ModelAndView modelAndView = new ModelAndView();
