@@ -28,7 +28,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    private int count;
+   
    
     
     @RequestMapping("/login")
